@@ -38,8 +38,7 @@ LNU-URP/
 ├── UrpMD5.py                # MD5加密算法
 ├── GenerateTodoList.py      # 生成待选课程配置
 ├── TodoList.json            # 待选课程配置文件
-├── 网络请求优化说明.md        # 网络优化文档
-└── Doc.md                   # 项目文档（本文件）
+└── README.md                # 项目文档（本文件）
 ```
 
 ## 📋 文件详细说明
