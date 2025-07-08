@@ -103,10 +103,10 @@ MD5加密算法实现：
 ```json
 [
     {
-        "courseNum": "1420013",
-        "classNum": "01",
+        "courseNum": "",
+        "classNum": "",
         "kcm": "",
-        "dealType": "2"
+        "dealType": ""
     }
 ]
 ```
