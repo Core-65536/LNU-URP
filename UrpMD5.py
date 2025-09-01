@@ -2,16 +2,17 @@
 # 神必MD5加密算法, 写的看不懂一点
 # 调用方式: UrpMD5.hex_md5(string, "0")
 # 这个后边的应该是版本号, 目前辽宁大学2024年传的是 '0'
+# UPD: 2025.09.01 传的是'1.8', 还有一些神秘拼接
 # By Core_65536
 def md5_rotate_left(x, n):
     return (x << n) | (x >> (32 - n))
 
 
 def md5_add_unsigned(a, b):
-    lX8 = (a & 0x80000000)
-    lY8 = (b & 0x80000000)
-    lX4 = (a & 0x40000000)
-    lY4 = (b & 0x40000000)
+    lX8 = a & 0x80000000
+    lY8 = b & 0x80000000
+    lX4 = a & 0x40000000
+    lY4 = b & 0x40000000
     lResult = (a & 0x3FFFFFFF) + (b & 0x3FFFFFFF)
     if lX4 & lY4:
         return lResult ^ 0x80000000 ^ lX8 ^ lY8
@@ -71,7 +72,9 @@ def md5_convert_to_word_array(string):
     while lByteCount < lMessageLength:
         lWordCount = (lByteCount - (lByteCount % 4)) // 4
         lBytePosition = (lByteCount % 4) * 8
-        lWordArray[lWordCount] = lWordArray[lWordCount] | (ord(string[lByteCount]) << lBytePosition)
+        lWordArray[lWordCount] = lWordArray[lWordCount] | (
+            ord(string[lByteCount]) << lBytePosition
+        )
         lByteCount += 1
     lWordCount = (lByteCount - (lByteCount % 4)) // 4
     lBytePosition = (lByteCount % 4) * 8
@@ -186,4 +189,9 @@ def hex_md5(string, ver):
         c = md5_add_unsigned(c, CC)
         d = md5_add_unsigned(d, DD)
 
-    return (md5_word_to_hex(a) + md5_word_to_hex(b) + md5_word_to_hex(c) + md5_word_to_hex(d)).lower()
+    return (
+        md5_word_to_hex(a)
+        + md5_word_to_hex(b)
+        + md5_word_to_hex(c)
+        + md5_word_to_hex(d)
+    ).lower()

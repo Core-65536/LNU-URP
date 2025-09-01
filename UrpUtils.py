@@ -24,8 +24,13 @@ def Getkcms(course, courseNum):
 
 
 # 将密码进行MD5加密
-def md5_encode(password):
-    return UrpMD5.hex_md5(password, "0")
+def md5_encode(passwd):
+    encoded = (
+        UrpMD5.hex_md5(UrpMD5.hex_md5(passwd, ""), "1.8")
+        + "*"
+        + UrpMD5.hex_md5(UrpMD5.hex_md5(passwd, "1.8"), "1.8")
+    )
+    return encoded
 
 
 # OCR获取验证码
